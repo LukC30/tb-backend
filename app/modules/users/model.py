@@ -1,15 +1,10 @@
-import enum
-from sqlalchemy import String, ForeignKey, Enum
+from sqlalchemy import String, Date, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from app.core.database import Base
 from datetime import date
 
-class CargoMembro(enum.Enum):
-    CONSELHEIRO = "Conselheiro"
-    CAPITAO = "Capitão"
-    SECRETARIO = "Secretário"
-    TESOUREIRO = "Tesoureiro"
-    DESBRAVADOR = "Desbravador"
+from app.core.database import Base
+from .domain import CargoMembro
+
 
 class Membro(Base):
     __tablename__ = "tbl_membro"
@@ -17,7 +12,7 @@ class Membro(Base):
 
     nome: Mapped[str] = mapped_column(String(100))
     cargo: Mapped[CargoMembro] = mapped_column(Enum(CargoMembro))
-    data_nascimento: Mapped[date] = mapped_column(date)
+    data_nascimento: Mapped[date] = mapped_column(Date)
     telefone: Mapped[str] = mapped_column(String(11), unique=True)
 
     login: Mapped["Login"] = relationship(back_populates='membro')
