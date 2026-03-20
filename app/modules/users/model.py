@@ -15,8 +15,8 @@ class Membro(Base):
     data_nascimento: Mapped[date] = mapped_column(Date)
     telefone: Mapped[str] = mapped_column(String(11), unique=True)
 
-    # login: Mapped["Login"] = relationship(back_populates='membro')
-    # unidade: Mapped[list["Unidade"]] = relationship(secondary="MembroUnidade", back_populates="membros")
+    login: Mapped["Login"] = relationship(back_populates='membro')
+    unidade: Mapped[list["Unidade"]] = relationship(secondary="MembroUnidade", back_populates="membros")
 
     def __repr__(self) -> str:
             return f"<Membro(nome={self.nome}, cargo={self.cargo})>"
