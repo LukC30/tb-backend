@@ -11,6 +11,7 @@ engine = create_async_engine(
 AsyncSessionLocal = async_sessionmaker(class_=AsyncSession, autocommit=False, autoflush=False, bind=engine)
 
 class Base(DeclarativeBase):
+    
     pass
 
 async def get_db():

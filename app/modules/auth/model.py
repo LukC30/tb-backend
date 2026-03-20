@@ -13,6 +13,6 @@ class Login(Base):
 
     id_user: Mapped[int] = mapped_column(ForeignKey("tbl_membro.id"))
     membro: Mapped["Membro"] = relationship(back_populates="login", lazy="joined")
-
+    
     def __repr__(self):
         return f"<Login=(email={self.email}, nome_membro={self.membro.nome})>"

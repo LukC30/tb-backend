@@ -13,3 +13,6 @@ class UserMapper():
         )
 
         return member
+    
+    # @staticmethod
+    # def to_

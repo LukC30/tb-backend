@@ -11,4 +11,6 @@ class UserService():
         member_data = await self.user_repo.create(member_model)
         return member_data
 
-        
+    async def get_all(self):
+        members = await self.user_repo.get_all()
+        return members
