@@ -11,8 +11,8 @@ class MembroUnidade(Base):
 
     data_regente: Mapped[int] = mapped_column(Integer) 
 
-    membro: Mapped["Membro"] = relationship(back_populates="historico_unidades")
-    unidade: Mapped["Unidade"] = relationship(back_populates="historico_membros")
+    membro: Mapped["Membro"] = relationship(back_populates="unidade")
+    unidade: Mapped["Unidade"] = relationship(back_populates="membros")
 
 class Unidade(Base):
     __tablename__ = "tbl_unidade"
@@ -21,7 +21,7 @@ class Unidade(Base):
     nome: Mapped[str] = mapped_column(String(100))
 
     membros: Mapped[list["Membro"]] = relationship(
-        secondary="MembroUnidade", back_populates="unidades"
+        secondary="tbl_membro_unidade", back_populates="unidade"
     )
     def __repr__(self):
         return f"<Unidade(nome={self.nome})>"

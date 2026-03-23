@@ -15,4 +15,4 @@ class Login(Base):
     membro: Mapped["Membro"] = relationship(back_populates="login", lazy="joined")
     
     def __repr__(self):
-        return f"<Login=(email={self.email}, nome_membro={self.membro.nome})>"
+        return f"<Login(email={self.email}, nome_membro={self.membro.nome})>"
