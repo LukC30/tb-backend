@@ -1,6 +1,6 @@
-from .schema import CreateLoginRequest
+from .schema import CreateLoginRequest, CreateLoginResponse
 from .model import Login
-
+from ..users.model import Membro
 class AuthMapper():
 
     @staticmethod
@@ -16,5 +16,5 @@ class AuthMapper():
         pass
 
     @staticmethod
-    def to_response(auth_model, user_model):
-        
+    def to_response(auth_model: Login, user_model: Membro):
+        pass
