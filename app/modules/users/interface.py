@@ -5,7 +5,7 @@ from typing import Optional
 class BaseUserRepository(ABC):
     
     @abstractmethod
-    async def create(self, member: Membro):
+    async def create(self, member: Membro) -> Optional[Membro]:
         pass
 
     @abstractmethod

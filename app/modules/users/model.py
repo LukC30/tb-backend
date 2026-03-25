@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sqlalchemy import String, Date, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date
@@ -11,14 +13,12 @@ class Membro(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
     nome: Mapped[str] = mapped_column(String(100))
-    cargo: Mapped[CargoMembro] = mapped_column(Enum(CargoMembro))
+    cargo: Mapped[CargoMembro] = mapped_column(Enum(CargoMembro), default=CargoMembro.DESBRAVADOR)
     data_nascimento: Mapped[date] = mapped_column(Date)
     telefone: Mapped[str] = mapped_column(String(11), unique=True)
 
     login: Mapped["Login"] = relationship(back_populates='membro')
-    unidade: Mapped["MembroUnidade"] = relationship(
-          secondary="tbl_membro_unidade", back_populates="membros"
-        )
+    assoc_unidade: Mapped[list["MembroUnidade"]] = relationship(back_populates="membro")
 
     def __repr__(self) -> str:
-            return f"<Membro(nome={self.nome}, cargo={self.cargo})>"
+        return f"<Membro(nome={self.nome}, cargo={self.cargo})>"
