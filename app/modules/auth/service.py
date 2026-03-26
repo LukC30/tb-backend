@@ -14,11 +14,11 @@ class AuthService():
 
     async def create_user(self, create_login_request: CreateLoginRequest):
         create_login_request.senha = password_encript(create_login_request.senha)
-        user_model = UserMapper.auth_to_model(create_login_request)
-        user = await self.user_repo.create(user_model)
+        user = UserMapper.auth_to_model(create_login_request)
+        user_model = await self.user_repo.create(user)
 
-        auth_model = AuthMapper.create_login_to_model(user.id, create_login_request)
-        auth = await self.auth_repo.create(auth_model)
+        auth = AuthMapper.create_login_to_model(user.id, create_login_request)
+        auth_model = await self.auth_repo.create(auth)
 
-        
-        return auth
+        response = AuthMapper.to_response(auth_model, user_model)
+        return response

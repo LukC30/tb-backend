@@ -4,6 +4,7 @@ import logging
 
 from app.core.lifespan import lifespan
 from app.modules.users.routes import user_router
+from app.modules.auth.routes import auth_router
 
 app = FastAPI(
     title="tb-backend",
@@ -12,6 +13,7 @@ app = FastAPI(
 )
 
 app.include_router(user_router)
+app.include_router(auth_router)
 
 @app.get('/')
 def test_route():

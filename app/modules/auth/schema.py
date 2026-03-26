@@ -9,5 +9,8 @@ class CreateLoginRequest(BaseModel):
     data_nascimento: date
 
 class CreateLoginResponse(BaseModel):
-    id: str
+    id: int
     email: str
+    nome: str
+    data_nascimento: date
+    telefone: str

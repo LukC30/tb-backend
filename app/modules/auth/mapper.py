@@ -17,4 +17,10 @@ class AuthMapper():
 
     @staticmethod
     def to_response(auth_model: Login, user_model: Membro):
-        pass
+        return CreateLoginResponse(
+            id=user_model.id,
+            nome=user_model.nome,
+            email=auth_model.email,
+            data_nascimento=user_model.data_nascimento,
+            telefone=user_model.telefone
+        )
